@@ -196,10 +196,25 @@ public class MyHashMap<K,V> implements Map<K,V> {
 
     @Override
     public Set<Entry<K, V>> entrySet() {
+        Set<Entry<K,V>> set2 = new HashSet<Entry<K, V>>();
+        Set<Bucket<K,V>> set = new HashSet<Bucket<K, V>>();
+        BucketIterator iter = new BucketIterator();
+        while (iter.hasNext()) {
+            set.add(iter.next());
+        }
         return null;
     }
+    public Set<Bucket<K, V>> entrySett() {
 
-    private class BucketIterator implements Iterator<Bucket<K,V>> {
+        Set<Bucket<K, V>> set = new HashSet<Bucket<K, V>>();
+        BucketIterator iter = new BucketIterator();
+        while (iter.hasNext()) {
+            set.add(iter.next());
+        }
+        return set;
+
+    }
+        private class BucketIterator implements Iterator<Bucket<K,V>> {
 
         Bucket<K,V> current;
         int index = 0;
@@ -215,7 +230,7 @@ public class MyHashMap<K,V> implements Map<K,V> {
             while (index < table.length && table[index] == null) {
                 index++;
             }
-            current = index == table.length ? null : table[index];
+            current = index < table.length ? table[index] :  null;
         }
 
         @Override
@@ -275,6 +290,14 @@ public class MyHashMap<K,V> implements Map<K,V> {
 
         public KB getKey() {
             return key;
+        }
+
+        @Override
+        public String toString() {
+            return "Bucket{" +
+                    "key=" + key +
+                    ", value=" + value +
+                    '}';
         }
 
         public VB getValue() {

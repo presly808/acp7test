@@ -68,6 +68,7 @@ public class TestMap {
         map.put(user14, 44);
         System.out.println(map.values());
         System.out.println(map.size());
+        System.out.println(map.entrySett());
 
 
 
